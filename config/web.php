@@ -11,11 +11,15 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'backend' => 'app\modules\backend\Module'
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'gQ5zZPZlFzQPo2L1gFQcrmyKVMaH7x1w',
         ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -24,7 +28,8 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            //TODO 全局异常处理
+            'class' => 'app\lib\exception\ExceptionHandler',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -43,14 +48,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
             'rules' => [
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
